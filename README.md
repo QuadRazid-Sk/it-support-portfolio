@@ -1,40 +1,49 @@
-# IT Support Portfolio
+# Портфолио: техническая поддержка
 
-Three artefacts that show what I actually do by hand: a home lab with Active Directory,
-a PowerShell inventory script, and a knowledge base of 20 typical first-line tickets.
-Everything here is openable and checkable — not a certificate.
+Три артефакта, которые показывают, что я делаю руками, а не только на словах.
+Не курсы и не сертификаты — рабочие вещи, которые можно открыть и проверить.
 
-## Contents
-
-| Folder | What it is | What it proves |
+| Папка | Что это | Что доказывает |
 |---|---|---|
-| `01_lab` | Diagram and write-up of a Proxmox lab: AD DS, DNS, DHCP, file server, client, Ubuntu | I understand how a domain and permissions work, and I can build and break a lab myself |
-| `02_powershell` | Workstation inventory script exporting to CSV | I write working scripts, not just run other people's |
-| `03_knowledge_base` | 20 instructions for typical first-line tickets | I can document a fix so a colleague can reuse it |
+| [`01_lab`](01_lab) | Схема и описание домашнего стенда на Proxmox: домен AD, DNS, DHCP, файловый сервер, клиент, Ubuntu | Понимаю, как устроены домен и права; умею поднять стенд и сломать его сам |
+| [`02_powershell`](02_powershell) | Скрипт инвентаризации рабочих станций с выгрузкой в CSV | Пишу рабочие скрипты, а не только запускаю чужие |
+| [`03_knowledge_base`](03_knowledge_base) | 20 инструкций по типовым заявкам первой линии | Умею оформить разбор так, чтобы им пользовался коллега |
 
-## 01. Lab
+## 01. Лаборатория
 
-`01_lab/Laboratory_Proxmox.docx` and `01_lab/lab_scheme.png`.
-Inside: VM list with addresses and resources, what is configured in AD, DNS, DHCP, GPO
-and on the file server, the commands used to verify the stand, and four real
-"broke it — found the cause — fixed it" cases.
+[`01_lab/Laboratory_Proxmox.docx`](01_lab/Laboratory_Proxmox.docx) и
+[`01_lab/lab_scheme.png`](01_lab/lab_scheme.png).
 
-## 02. Inventory script
+Внутри: состав виртуальных машин с адресами и ресурсами, что именно настроено
+в AD, DNS, DHCP, групповых политиках и на файловом сервере, список команд
+для проверки стенда и четыре реальных случая «сломалось — нашёл причину — починил».
+
+## 02. Скрипт инвентаризации
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File .\02_powershell\Get-Inventory.ps1 -OutputPath .\inventory.csv
 ```
 
-Local host is queried directly, remote hosts over a CIM session with a timeout.
-An unreachable host does not abort the run: it lands in the CSV with `status = error`
-and the error text. `inventory_example.csv` is sample output with sanitized data.
+Собирает имя, ОС, домен, процессор, память, диск C:, IP и MAC, дату установки
+и время работы. Локальная машина опрашивается напрямую, удалённые — через CIM-сессию
+с таймаутом. Недоступный хост не роняет сбор: строка попадает в CSV со статусом
+`error` и текстом ошибки.
 
-## 03. Knowledge base
+[`02_powershell/inventory_example.csv`](02_powershell/inventory_example.csv) —
+пример вывода, данные обезличены.
 
-Twenty Markdown articles plus a combined `Knowledge_Base_20_articles.docx`.
-Each one: symptom, cause, steps, verification, when to escalate.
+## 03. База знаний
 
-## Honest limitations
+Двадцать статей в Markdown и одна сводная
+[`Knowledge_Base_20_articles.docx`](Knowledge_Base_20_articles.docx).
 
-The lab runs on home hardware; it is not production. The script is verified for local
-execution — remote collection needs WMI/CIM access and query permissions on the targets.
+Структура каждой: симптом → причина → шаги с командами → проверка →
+когда эскалировать. От «нет доступа к папке» до синего экрана и чек-листа
+выдачи нового рабочего места.
+
+## Ограничения, о которых честно
+
+Стенд собран на домашнем железе, это не продакшн. Скрипт проверен на локальном
+запуске; для удалённых хостов нужен доступ по WMI/CIM и права на опрос.
+
+English version: [README_EN.md](README_EN.md)
