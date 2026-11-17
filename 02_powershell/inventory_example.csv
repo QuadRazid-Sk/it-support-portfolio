@@ -1,0 +1,4 @@
+﻿"computer";"status";"error";"os";"domain";"user";"cpu";"cpu_logical";"ram_gb";"disk_c_free_gb";"disk_c_total_gb";"disk_c_free_pct";"ip";"mac";"os_installed";"last_boot";"uptime_days"
+"PC-01";"ok";"";"Windows 11 Pro";"CORP";"CORP\i.ivanov";"Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz";"12";"16";"142.4";"476.9";"29.9";"192.168.1.31";"3C-7C-3F-1A-2B-4C";"12.03.2024";"17.11.2026 08:12";"3.4"
+"PC-02";"ok";"";"Windows 10 Pro";"CORP";"CORP\a.petrova";"Intel(R) Core(TM) i3-9100 CPU @ 3.60GHz";"4";"8";"41.2";"237.5";"17.3";"192.168.1.32";"3C-7C-3F-1A-2B-55";"05.09.2023";"16.11.2026 19:40";"1.6"
+"PC-03";"error";"The RPC server is unavailable.";"";"";"";"";"0";"0";"0";"0";"0";"";"";"";"";"0"

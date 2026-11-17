@@ -1,0 +1,10 @@
+# real inventory exports contain hostnames and IPs - never commit them
+inventory.csv
+*.log
+
+# OS and editor noise
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
